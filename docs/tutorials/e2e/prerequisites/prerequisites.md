@@ -201,10 +201,15 @@ sudo apt install kubernetes
 
 #### Install kubectl
 
-kubectl will be installed with snap, we need to use snap security policy "classic" instead of the default policy "strict" to allow snap full access to the system.
+kubectl could be installed with snap, we need to use snap security policy "classic" instead of the default policy "strict" to allow snap full access to the system.
 
 ```bash
 sudo snap install kubectl --classic
+```
+Meanwhile you also may install it with just using apt.
+
+```bash
+sudo apt install kubectl
 ```
 
 ::: note
@@ -259,21 +264,21 @@ Check that kubectl is properly configured by getting the cluster state:
 kubectl cluster-info
 ```
 
-#### Install Minikube
+#### Install Minikube (Version v1.34.0)
 
-To install minikube just download the executable from the repository. (Please check also <https://kubernetes.io/de/docs/tasks/tools/install-minikube/>)
+To install minikube just download the executable from the repository. (Please check also <https://minikube.sigs.k8s.io/docs/start/>)
 
 ```bash
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
-&& chmod +x minikube
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
 ```
 
 The chmod command is used to ensure minikube is executable. If you want other users to have access, you should copy the executable to /usr/bin/ or another comparable location which is used by all users. Ensure that all members of the group "docker" have access.
 
 ```bash
 sudo cp ./minikube /usr/bin
-chgrp docker /usr/bin/minikube
-chmod 750 /usr/bin/minikube
+sudo chgrp docker /usr/bin/minikube
+sudo chmod 750 /usr/bin/minikube
 ```
 
 #### Install helm
